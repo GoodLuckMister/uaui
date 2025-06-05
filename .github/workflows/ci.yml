@@ -2,10 +2,11 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - master
+      - b.20250605
   pull_request:
     branches:
-      - main
+      - master
   merge_group:
     types:
       - checks_requested
