@@ -8,9 +8,9 @@ export default function App() {
         onPress={() => {
           console.log('Button pressed!');
         }}
-        style={{ marginBottom: 20 }}
+        style={styles.button}
       >
-        <Text>Result: </Text>
+        <Text style={styles.text}>Result: </Text>
       </Button>
     </View>
   );
@@ -21,5 +21,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  button: {
+    padding: 10,
+    backgroundColor: 'purple',
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  text: {
+    color: 'white',
+    fontSize: 16,
   },
 });
