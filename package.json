@@ -56,7 +56,7 @@
   },
   "homepage": "https://github.com/GoodLuckMister/uaui#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "@paet:registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^19.6.0",
