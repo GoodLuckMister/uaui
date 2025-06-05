@@ -4,7 +4,11 @@ import {
   type TouchableOpacityProps,
 } from 'react-native';
 
-const Button = ({ children, style, ...rest }: TouchableOpacityProps) => {
+export type ButtonComponent = (
+  props: TouchableOpacityProps
+) => React.ReactElement;
+
+const Button: ButtonComponent = ({ children, style, ...rest }) => {
   return (
     <TouchableOpacity style={[styles.button, style]} {...rest}>
       {children}
