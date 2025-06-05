@@ -1,12 +1,17 @@
 import { Text, View, StyleSheet } from 'react-native';
-import { multiply } from 'react-native-uaui';
-
-const result = multiply(3, 7);
+import { Button } from 'react-native-uaui';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Button
+        onPress={() => {
+          console.log('Button pressed!');
+        }}
+        style={{ marginBottom: 20 }}
+      >
+        <Text>Result: </Text>
+      </Button>
     </View>
   );
 }
