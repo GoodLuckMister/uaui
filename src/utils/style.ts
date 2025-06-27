@@ -25,6 +25,5 @@ export const createShadow = (elevation: number): ViewStyle => ({
   elevation, // Android
 });
 
-// Style composition utility
 export const composeStyles = (...styles: unknown[]): Record<string, unknown> =>
   Object.assign({}, ...styles.filter(Boolean));

@@ -10,15 +10,31 @@ npm install react-native-uaui
 
 ## Usage
 
-
 ```js
-import { multiply } from 'react-native-uaui';
+import { Button, ThemeProvider } from 'react-native-uaui';
 
-// ...
+const theme = {
+  components: {
+    button: {
+      variants: {
+        primary: {
+          backgroundColor: 'red',
+          color: 'white',
+        },
+      },
+    },
+  },
+};
 
-const result = await multiply(3, 7);
+export default function App() {
+  return (
+    <ThemeProvider customTheme={theme}>
+      <View style={styles.container}>
+        <Button>Primary Button</Button>
+    </ThemeProvider>
+  );
+}
 ```
-
 
 ## Contributing
 

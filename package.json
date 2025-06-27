@@ -1,6 +1,6 @@
 {
   "name": "react-native-uaui",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "React Native Components",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
