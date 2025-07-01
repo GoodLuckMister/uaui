@@ -12,8 +12,7 @@ if (!fs.existsSync(indexFile)) {
 
 let html = fs.readFileSync(indexFile, 'utf8');
 
-// Replace all src/href starting with "/_expo/" to "_expo/"
-html = html.replace(/(["'=])\/_expo\//g, '$1_expo/');
+html = html.replace(/(src|href)=["']\/([^"']+)["']/g, '$1="$2"');
 
 fs.writeFileSync(indexFile, html, 'utf8');
 console.log('Fixed asset paths in', indexFile);
