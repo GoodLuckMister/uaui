@@ -66,7 +66,11 @@ jobs:
       - name: Build example for Web
         run: |
           yarn example expo export --platform web
-          echo "web_dir=web-build" >> "$GITHUB_OUTPUT"
+      - name: Upload web build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: example/dist
   deploy-web:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
@@ -85,4 +89,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./web-build
+          publish_dir: web-build
