@@ -1,63 +1,62 @@
-import { View, StyleSheet } from 'react-native';
-import { Button, ThemeProvider } from 'react-native-uaui';
+import { useState } from 'react';
+import { View, StyleSheet, Dimensions, Platform } from 'react-native';
+import { Navigation } from './components/Navigation';
+import { HomeScreen } from './screens/HomeScreen';
+import { ButtonScreen } from './screens/ButtonScreen';
+import { ThemeScreen } from './screens/ThemeScreen';
 
-const theme = {
-  components: {
-    button: {
-      variants: {
-        primary: {
-          backgroundColor: 'red',
-          color: 'white',
-        },
-        secondary: {
-          backgroundColor: 'blue',
-          color: 'white',
-        },
-        outline: {
-          backgroundColor: 'transparent',
-          borderColor: 'black',
-          borderWidth: 1,
-          color: 'black',
-        },
-        ghost: {
-          backgroundColor: 'transparent',
-          color: 'gray',
-        },
-      },
-    },
-  },
-};
+const { width: screenWidth } = Dimensions.get('window');
+const isWeb = Platform.OS === 'web';
+const isDesktop = isWeb && screenWidth > 768;
 
 export default function App() {
-  return (
-    <ThemeProvider customTheme={theme}>
-      <View style={styles.container}>
-        <Button>Primary Button</Button>
+  const [activeRoute, setActiveRoute] = useState('home');
 
-        <Button variant="secondary" size="md" style={styles.secondaryButton}>
-          Secondary Button
-        </Button>
+  const renderScreen = () => {
+    switch (activeRoute) {
+      case 'home':
+        return <HomeScreen />;
+      case 'button':
+        return <ButtonScreen />;
+      case 'theme':
+        return <ThemeScreen />;
+      default:
+        return <HomeScreen />;
+    }
+  };
 
-        <Button variant="outline" size="sm" style={styles.secondaryButton}>
-          Outline Button
-        </Button>
-
-        <Button variant="ghost" size="lg" style={styles.secondaryButton}>
-          Ghost Button
-        </Button>
+  if (isDesktop) {
+    return (
+      <View style={styles.desktopContainer}>
+        <Navigation activeRoute={activeRoute} onNavigate={setActiveRoute} />
+        <View style={styles.desktopContent}>{renderScreen()}</View>
       </View>
-    </ThemeProvider>
+    );
+  }
+
+  return (
+    <View style={styles.mobileContainer}>
+      <Navigation activeRoute={activeRoute} onNavigate={setActiveRoute} />
+      <View style={styles.mobileContent}>{renderScreen()}</View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  desktopContainer: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
+    flexDirection: 'row',
+    backgroundColor: '#ffffff',
   },
-  secondaryButton: {
-    marginTop: 16,
+  desktopContent: {
+    flex: 1,
+    overflow: 'hidden',
+  },
+  mobileContainer: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+  },
+  mobileContent: {
+    flex: 1,
   },
 });
